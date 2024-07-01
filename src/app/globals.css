@@ -3,31 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-color: 255, 255, 255;
+  --foreground-color: 0, 0, 0;
+  --primary-color: 145, 221, 207;
+  --text-on-primary: 0, 0, 0;
+  --secondary-color: 255, 127, 62;
+  --text-on-secondary: 0, 0, 0;
+  --error-color:  255, 0, 0;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-color: 0, 0, 0;
+    --foreground-color: 255, 255, 255;
   }
-}
+} */
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-color));
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.primarySurfaceColor {
+  background-color: rgb(var(--primary-color));
+}
+
+.header {
+  @apply primarySurfaceColor
 }
