@@ -8,7 +8,7 @@
   --primary-color: 145, 221, 207;
   --text-on-primary: 0, 0, 0;
   --secondary-color: 255, 127, 62;
-  --text-on-secondary: 0, 0, 0;
+  --text-on-secondary: 255, 255, 255;
   --error-color:  255, 0, 0;
 }
 

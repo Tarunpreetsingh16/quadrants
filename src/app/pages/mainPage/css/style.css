@@ -1,0 +1,23 @@
+.modalBg {
+    background-color: rgba(var(--background-color), 0.9);
+}
+
+.debug {
+    border: 0.1rem solid red;
+}
+
+.modal {
+    @apply h-[400px];
+    @apply w-[500px];
+    @apply rounded-lg;
+    @apply text-lg;
+    @apply font-bold;
+    color: rgba(var(--text-on-secondary));
+    background-color: rgba(var(--secondary-color));
+}
+
+.inputField,
+textArea {
+    font-size: 15px;
+    color: rgba(var(--foreground-color));
+}
