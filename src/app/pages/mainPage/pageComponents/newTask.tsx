@@ -2,13 +2,29 @@ import Input from "@/app/ui/input";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import cross from '@/../../public/icons/cross.png'
+import Image from "next/image";
 
-export default function () {
+
+interface NewTaskProps {
+    onClose: () => void
+}
+
+export default function(
+    props: NewTaskProps
+) {
     return (
         <div className="modalBg absolute w-screen h-screen">
             <div className="w-screen h-screen flex justify-center">
-            <div className="modal bg-black self-center flex flex-col">
+            <div className="modal bg-black self-center flex flex-col  animate__animated animate__flipInX">
                     <div className="self-center w-[80%]">
+                        <div className="my-3 flex w-[100%] flex-row justify-between content-center" >
+                            <label className="text-2xl">New Task</label>
+                            <Image src={cross} alt="Close the new task modal" 
+                                className="w-[8%] cursor-pointer"
+                                onClick={props.onClose} />
+                        </div>
+                        <hr />
                         <div className="my-3 flex flex-col">
                             <label>Title</label>
                             <Input />
@@ -24,10 +40,12 @@ export default function () {
                             <label className="w-[120px] self-center">Importance</label>
                             <ScaleRadioGroup/>
                         </div>
+
                         <div className="my-3 flex flex-row">
                             <label className="w-[120px] self-center">Urgency</label>
                             <ScaleRadioGroup/>
                         </div>
+
                         <div className="my-3 flex flex-col justify-start content-start my-5">
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DateTimePicker label="Task deadline picker" />
