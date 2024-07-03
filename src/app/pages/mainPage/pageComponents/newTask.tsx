@@ -1,6 +1,7 @@
 import Input from "@/app/ui/input";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
-import { grey, pink, red, yellow } from "@mui/material/colors";
+import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 
 export default function () {
     return (
@@ -27,6 +28,11 @@ export default function () {
                             <label className="w-[120px] self-center">Urgency</label>
                             <ScaleRadioGroup/>
                         </div>
+                        <div className="my-3 flex flex-col justify-start content-start my-5">
+                            <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DateTimePicker label="Task deadline picker" />
+                            </LocalizationProvider>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,20 +50,10 @@ const ScaleRadioGroup = () => {
             name="row-radio-buttons-group"
         >
             <FormControlLabel value="high" control={
-                <Radio sx={{
-                    color: grey[800],
-                    '&.Mui-checked': {
-                        color: grey[800]
-                    },
-                }}/>
+                <Radio />
             } label="High" />
             <FormControlLabel value="female" control={
-                <Radio sx={{
-                    color: grey[800],
-                    '&.Mui-checked': {
-                        color: grey[800]
-                    },
-                }}/>
+                <Radio />
             } label="Low" />
         </RadioGroup>
     )

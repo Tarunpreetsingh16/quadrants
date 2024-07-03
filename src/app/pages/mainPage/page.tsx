@@ -15,12 +15,6 @@ export default function MainPage() {
             <Header />
             <div className="quadrantSheet flex h-screen relative">
                 <Quadrant/>
-                {/* {
-                    showContextMenu
-                        ? <CustomContextMenu xPos={xPos} yPos={yPos} 
-                            animationClass={showContextMenu ? "animate__zoomIn" : "animate__zoomOut"}/>
-                        : null
-                } */}
                 <div className="w-[3] absolute right-2 top-2">
                     <Image src={plusImage} className="w-[100%] cursor-pointer" alt="Add a task" />
                 </div>

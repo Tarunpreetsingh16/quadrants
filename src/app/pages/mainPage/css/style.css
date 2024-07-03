@@ -7,7 +7,6 @@
 }
 
 .modal {
-    @apply h-[400px];
     @apply w-[500px];
     @apply rounded-lg;
     @apply text-lg;
