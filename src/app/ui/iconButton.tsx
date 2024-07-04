@@ -10,7 +10,7 @@ export default (
     return (
         <div className="flex flex-row cursor-pointer featureButton rounded-sm" onClick={props.onClick}>
             {props.icon}
-            <button className="ml-1"> {props.text} </button>
+            <button> {props.text} </button>
         </div>
     )
 }

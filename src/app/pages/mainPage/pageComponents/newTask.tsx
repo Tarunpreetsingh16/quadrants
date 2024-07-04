@@ -5,7 +5,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 interface NewTaskProps {
-    onClose: () => void
+    onClose: () => void,
+    xAxisLabel: string,
+    yAxisLabel: string
 }
 
 export default function(
@@ -14,7 +16,7 @@ export default function(
     return (
         <div className="modalBg absolute w-screen h-screen">
             <div className="w-screen h-screen flex justify-center">
-            <div className="modal bg-black self-center flex flex-col  animate__animated animate__flipInX">
+                <div className="modal bg-black self-center flex flex-col  animate__animated animate__flipInX">
                     <div className="self-center w-[80%]">
                         <div className="my-3 flex w-[100%] flex-row justify-between" >
                             <label className="text-2xl">New Task</label>
@@ -26,7 +28,7 @@ export default function(
                         <hr />
                         <div className="my-3 flex flex-col">
                             <label>Title</label>
-                            <Input />
+                            <Input placeholder="Need to create tickets..."/>
                         </div>
                         
                         <div className="my-3 flex flex-col">
@@ -35,13 +37,13 @@ export default function(
                                 placeholder="Tickets needs to created by Monday for etransfer initiative..." />
                         </div>
 
-                        <div className="my-3 flex flex-row">
-                            <label className="w-[120px] self-center">Importance</label>
+                        <div className="my-3 flex flex-col">
+                            <label>{props.xAxisLabel}</label>
                             <ScaleRadioGroup/>
                         </div>
 
-                        <div className="my-3 flex flex-row">
-                            <label className="w-[120px] self-center">Urgency</label>
+                        <div className="my-3 flex flex-col">
+                            <label>{props.yAxisLabel}</label>
                             <ScaleRadioGroup/>
                         </div>
 
@@ -52,7 +54,7 @@ export default function(
                         </div>
 
                         <div className="my-3">
-                            <button className="ml-1 success"> Create Task </button>
+                            <button className="ml-1 success">Create Task</button>
                         </div>
                     </div>
                 </div>
