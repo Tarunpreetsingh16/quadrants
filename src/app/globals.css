@@ -5,12 +5,29 @@
 :root {
   --background-color: 255, 255, 255;
   --foreground-color: 0, 0, 0;
-  --primary-color: 145, 221, 207;
-  --text-on-primary: 0, 0, 0;
-  --secondary-color: 255, 127, 62;
-  --text-on-secondary: 255, 255, 255;
+  --primary-color: 0, 0, 0;
+  --text-on-primary: 255, 255, 255;
+  --secondary-color: 255, 255, 255;
+  --text-on-secondary: 0, 0, 0;
   --error-color:  255, 0, 0;
+  --success-surface-color: 59, 130, 246;
+  --text-on-success-surface: 255, 255, 255
 }
+
+.modalBg {
+  background-color: rgba(var(--foreground-color), 0.5);
+}
+
+
+.modal {
+  @apply w-[500px];
+  @apply rounded-lg;
+  @apply text-lg;
+  color: rgba(var(--text-on-secondary));
+  background-color: rgba(var(--secondary-color));
+  box-shadow: 0px 0px 2rem rgba(var(--foreground-color), 0.5);
+}
+
 
 /* @media (prefers-color-scheme: dark) {
   :root {
@@ -30,4 +47,26 @@ body {
 
 .header {
   @apply primarySurfaceColor
+}
+
+.inputField,
+textArea {
+    font-size: 12px;
+    color: rgba(var(--foreground-color));
+    border: 0.1px solid black;
+}
+
+button {
+  @apply px-2 py-1;
+}
+
+.success {
+  @apply rounded-sm;
+  background-color: rgb(var(--success-surface-color), 0.8);
+  color: rgb(var(--text-on-success-surface));
+  transition: all 0.2s ease-in-out;
+}
+
+.success:hover {
+  background-color: rgb(var(--success-surface-color));
 }

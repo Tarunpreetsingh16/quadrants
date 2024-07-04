@@ -2,9 +2,7 @@ import Input from "@/app/ui/input";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import cross from '@/../../public/icons/cross.png'
-import Image from "next/image";
-
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 interface NewTaskProps {
     onClose: () => void
@@ -18,11 +16,12 @@ export default function(
             <div className="w-screen h-screen flex justify-center">
             <div className="modal bg-black self-center flex flex-col  animate__animated animate__flipInX">
                     <div className="self-center w-[80%]">
-                        <div className="my-3 flex w-[100%] flex-row justify-between content-center" >
+                        <div className="my-3 flex w-[100%] flex-row justify-between" >
                             <label className="text-2xl">New Task</label>
-                            <Image src={cross} alt="Close the new task modal" 
-                                className="w-[8%] cursor-pointer"
-                                onClick={props.onClose} />
+                            <div className="self-center cursor-pointer text-red-600" 
+                                onClick={props.onClose}>
+                                <HighlightOffIcon className="closeTask"/>
+                            </div>
                         </div>
                         <hr />
                         <div className="my-3 flex flex-col">
@@ -50,6 +49,10 @@ export default function(
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
                                 <DateTimePicker label="Task deadline picker" />
                             </LocalizationProvider>
+                        </div>
+
+                        <div className="my-3">
+                            <button className="ml-1 success"> Create Task </button>
                         </div>
                     </div>
                 </div>

@@ -4,23 +4,21 @@ import { useState } from "react";
 import Header from "./pageComponents/header";
 import NewTask from "./pageComponents/newTask";
 import Quadrant from "./pageComponents/quadrant";
-import plusImage from "@/../public/icons/plus.png";
-import Image from 'next/image'
+import AxisNaming from "./pageComponents/axisNaming";
+import FeatureList from "./pageComponents/featureList";
 
 export default function MainPage() {
     const [createNewTask, setCreateNewTask] = useState(false);
 
     return (
         <>
-            <Header />
+            <Header>
+                <FeatureList onCreateNewTask={() => setCreateNewTask(true)} 
+                    containerCss="flex-row justify-end buttonSpacingHorizontal" />
+            </Header>
             <div className="quadrantSheet flex h-screen relative">
-                <Quadrant/>
-                <div className="w-[3] absolute right-2 top-2">
-                    <Image src={plusImage} alt="Add a task"
-                        className="w-[100%] cursor-pointer" 
-                        onClick={() => setCreateNewTask(true)} />
-                </div>
-
+                <AxisNaming />
+                <Quadrant />
                 {
                     createNewTask 
                         ? <NewTask onClose={() => setCreateNewTask(false)}/>

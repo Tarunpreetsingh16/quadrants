@@ -1,22 +1,31 @@
-.modalBg {
-    background-color: rgba(var(--background-color), 0.9);
-}
-
 .debug {
     border: 0.1rem solid red;
 }
 
-.modal {
-    @apply w-[500px];
-    @apply rounded-lg;
-    @apply text-lg;
-    @apply font-bold;
-    color: rgba(var(--text-on-secondary));
-    background-color: rgba(var(--secondary-color));
+.featureButton {
+    color: rgb(var(--text-on-primary));
+    border: 1px solid transparent;
 }
 
-.inputField,
-textArea {
-    font-size: 15px;
-    color: rgba(var(--foreground-color));
+
+.buttonSpacingHorizontal > .featureButton {
+    @apply ml-5;
+}
+
+.featureButton {
+    transition: all 0.2s ease-in-out; 
+}
+
+.featureButton:hover {
+    border: 1px solid white;
+    color: rgb(var(--foreground-color));
+    background-color: rgba(var(--background-color));
+}
+
+.closeTask {
+    transition: all 0.2s ease-in-out;
+}
+
+.closeTask:hover {
+    @apply scale-[1.2] rotate-90;
 }
