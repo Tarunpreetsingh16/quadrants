@@ -25,7 +25,7 @@ export default function(
                 
                 <div className="quadrant relative" id="quadrant1">
                     <Labels xAxisLabel={props.xAxisLabel} yAxisLabel={props.yAxisLabel} />
-                    <div className="h-[100%]  overflow-scroll ">
+                    <div className="h-[98%]  overflow-scroll ">
                         <div className="p-5 flex flex-row flex-wrap">
                             {
                                 quad1Tasks.map((task: Task, index: number) =>
@@ -39,7 +39,7 @@ export default function(
                     </div>
                 </div>
                 <div className="quadrant" id="quadrant2">
-                    <div className=" h-[100%]  overflow-scroll">
+                    <div className=" h-[98%]  overflow-scroll">
                         <div className="p-5 flex flex-row flex-wrap">
                             {
                                 quad2Tasks.map((task: Task, index: number) =>
@@ -55,7 +55,7 @@ export default function(
             </div>
             <div className="bottomQuadrants">
                 <div className="quadrant" id="quadrant3">
-                    <div className=" h-[100%]  overflow-scroll">
+                    <div className=" h-[98%]  overflow-scroll">
                         <div className="p-5 flex flex-row flex-wrap">
                             {
                                 quad3Tasks.map((task: Task, index: number) =>
@@ -69,7 +69,7 @@ export default function(
                     </div>
                 </div>
                 <div className="quadrant" id="quadrant4">
-                    <div className=" h-[100%]  overflow-scroll">
+                    <div className=" h-[98%]  overflow-scroll">
                         <div className="p-5 flex flex-row flex-wrap">
                             {
                                 quad4Tasks.map((task: Task, index: number) =>

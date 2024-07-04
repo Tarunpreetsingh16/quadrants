@@ -9,7 +9,7 @@
   --text-on-primary: 255, 255, 255;
   --secondary-color: 255, 255, 255;
   --text-on-secondary: 0, 0, 0;
-  --error-color:  255, 0, 0;
+  --error-color: 239, 35, 60;
   --success-surface-color: 59, 130, 246;
   --text-on-success-surface: 255, 255, 255
 }
@@ -81,4 +81,9 @@ button {
   @apply cursor-pointer;
   box-shadow: 0px 0px 0.5rem rgba(var(--foreground-color), 0.5);
   transition: all 0.5s ease;
+}
+
+.error {
+  @apply mt-2 text-xs text-white p-[1%] rounded-sm;
+  background-color: rgba(var(--error-color), 0.9);
 }
