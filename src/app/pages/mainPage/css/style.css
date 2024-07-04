@@ -29,3 +29,45 @@
 .closeTask:hover {
     @apply scale-[1.2] rotate-90;
 }
+
+.topQuadrants,
+.bottomQuadrants {
+    @apply w-screen flex flex-row;
+    @apply h-[50%];
+}
+
+.quadrant {
+    @apply w-[50%];
+    border: 1px solid black;
+    word-wrap: break-word;
+}
+
+#quadrant1,
+#quadrant2 {
+    border-top: none;
+}
+
+#quadrant1 {
+    border-left: none;
+}
+
+#quadrant2 {
+    border-right: none;
+}
+
+#quadrant3,
+#quadrant4 {
+    border-bottom: none;
+}
+
+#quadrant3 {
+    border-left: none;
+}
+
+#quadrant4 {
+    border-right: none;
+}
+
+.quadrant .chip {
+    @apply m-1;
+}
