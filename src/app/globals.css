@@ -62,6 +62,7 @@ button {
 
 .success {
   @apply rounded-sm;
+  font-size: 15px;
   background-color: rgb(var(--success-surface-color), 0.8);
   color: rgb(var(--text-on-success-surface));
   transition: all 0.2s ease-in-out;

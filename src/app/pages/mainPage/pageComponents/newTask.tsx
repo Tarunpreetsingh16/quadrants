@@ -5,7 +5,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 
 interface NewTaskProps {
-    onClose: () => void
+    onClose: () => void,
+    xAxisLabel: string,
+    yAxisLabel: string
 }
 
 export default function(
@@ -26,7 +28,7 @@ export default function(
                         <hr />
                         <div className="my-3 flex flex-col">
                             <label>Title</label>
-                            <Input />
+                            <Input placeholder="Need to create tickets..."/>
                         </div>
                         
                         <div className="my-3 flex flex-col">
@@ -36,12 +38,12 @@ export default function(
                         </div>
 
                         <div className="my-3 flex flex-row">
-                            <label className="w-[120px] self-center">Importance</label>
+                            <label className="w-[120px] self-center">{props.xAxisLabel}</label>
                             <ScaleRadioGroup/>
                         </div>
 
                         <div className="my-3 flex flex-row">
-                            <label className="w-[120px] self-center">Urgency</label>
+                            <label className="w-[120px] self-center">{props.yAxisLabel}</label>
                             <ScaleRadioGroup/>
                         </div>
 
@@ -52,7 +54,7 @@ export default function(
                         </div>
 
                         <div className="my-3">
-                            <button className="ml-1 success"> Create Task </button>
+                            <button className="ml-1 success">Create Task</button>
                         </div>
                     </div>
                 </div>
