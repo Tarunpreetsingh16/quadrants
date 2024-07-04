@@ -6,17 +6,19 @@ import NewTask from "./pageComponents/newTask";
 import Quadrant from "./pageComponents/quadrant";
 import AxisNaming from "./pageComponents/axisNaming";
 import FeatureList from "./pageComponents/featureList";
+import Alert from "@/app/ui/alert";
 
 export default function MainPage() {
     const [createNewTask, setCreateNewTask] = useState(false);
     const [editAxes, setEditAxes] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
     const [xAxisLabel, setXAxisLabel] = useState("");
     const [yAxisLabel, setYAxisLabel] = useState("");
 
     useEffect(() => {
         if (createNewTask && (xAxisLabel === '' || yAxisLabel === '')) {
-            alert("Please name the axes first.")
-            setCreateNewTask(false);
+            setCreateNewTask(false)
+            setShowAlert(true)
         }
     }, [createNewTask])
 
@@ -26,10 +28,12 @@ export default function MainPage() {
                 <FeatureList onCreateNewTask={() => {
                         setCreateNewTask(true)
                         setEditAxes(false)
+                        setShowAlert(false)
                     }} 
                     onEditAxes={() => {
                         setEditAxes(true)
                         setCreateNewTask(false)
+                        setShowAlert(false)
                     }}
                     containerCss="flex-row justify-end buttonSpacingHorizontal" />
             </Header>
@@ -49,6 +53,13 @@ export default function MainPage() {
                         ? <NewTask onClose={() => setCreateNewTask(false)}
                             xAxisLabel={xAxisLabel}
                             yAxisLabel={yAxisLabel} />
+                        : null
+                }
+                {
+                    showAlert
+                        ? <Alert onClose={() => setShowAlert(false)}
+                            title="Missing axes labels"
+                            description='Please enter the axes names using "Edit axes" button' />
                         : null
                 }
                 
