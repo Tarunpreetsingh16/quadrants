@@ -10,7 +10,7 @@ export default (
 ) => {
 
     return (
-        <div className={`chip rounded-2xl py-1 px-5 ${props.textColor}`}
+        <div className={`chip rounded-2xl py-1 px-2 ${props.textColor}`}
             style={{
                 backgroundColor: props.bgColor
             }}>

@@ -8,6 +8,7 @@ import AxisNaming from "./pageComponents/axisNaming";
 import FeatureList from "./pageComponents/featureList";
 import Alert from "@/app/ui/alert";
 import { Task } from "@/app/data/task";
+import { Axes } from "@/app/data/axes";
 
 export default function MainPage() {
     
@@ -70,8 +71,11 @@ export default function MainPage() {
                         ? <AxisNaming onClose={() => setEditAxes(false)}
                             xAxisLabel={xAxisLabel}
                             yAxisLabel={yAxisLabel}
-                            onXAxisNameChange={setXAxisLabel}
-                            onYAxisNameChange={setYAxisLabel}/>
+                            onUpdate={(axes: Axes) => {
+                                setXAxisLabel(axes.xAxisLabel)
+                                setYAxisLabel(axes.yAxisLabel)
+                                setEditAxes(false)
+                            }}/>
                         : null
                 }
                 {
@@ -85,8 +89,18 @@ export default function MainPage() {
                 {
                     showAlert
                         ? <Alert onClose={() => setShowAlert(false)}
-                            title="Missing axes labels"
-                            description='Please enter the axes names using "Edit axes" button' />
+                            title="Missing axes labels" >
+                                <div>
+                                    <label>Please label the axes first.</label>
+                                    <div className="my-3">
+                                        <button className="ml-1 success"
+                                            onClick={() => {
+                                                setEditAxes(true)
+                                                setShowAlert(false)
+                                            }}>Label Axes</button>
+                                    </div>
+                                </div>
+                            </Alert>
                         : null
                 }
             </div>

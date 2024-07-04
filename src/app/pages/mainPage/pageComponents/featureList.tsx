@@ -16,8 +16,8 @@ export default (
             
             <IconButton icon={<EditIcon className="self-center" />} 
                 onClick={props.onEditAxes}
-                text="Edit axes" 
-                key={"Edit axes button"}/>
+                text="Label axes" 
+                key={"Label axes button"}/>
             
             <IconButton icon={<NoteAddIcon className="self-center" />} 
                 onClick={props.onCreateNewTask}

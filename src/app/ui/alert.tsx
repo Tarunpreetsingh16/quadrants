@@ -3,7 +3,7 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 interface AlertProps {
     onClose: () => void,
     title: string,
-    description: string
+    children: React.ReactNode
 }
 
 export default (
@@ -12,7 +12,7 @@ export default (
     return (
         <div className="modalBg absolute w-screen h-screen">
             <div className="w-screen h-screen flex justify-center">
-                <div className="modal bg-black self-center flex flex-col  animate__animated animate__flipInX">
+                <div className="modal bg-black self-center flex flex-col">
                     <div className="self-center w-[80%]">
                         <div className="my-3 flex w-[100%] flex-row justify-between" >
                             <label className="text-2xl">{props.title}</label>
@@ -23,7 +23,7 @@ export default (
                         </div>
                         <hr />
                         <div className="my-3 flex flex-col">
-                            <label>{props.description}</label>
+                            {props.children}
                         </div>
                     </div>
                 </div>
