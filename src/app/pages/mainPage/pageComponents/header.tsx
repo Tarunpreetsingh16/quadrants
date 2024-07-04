@@ -11,7 +11,7 @@ export default (
     return (
         <div className="w-screen header content-center py-3 flex justify-center">
             <Image src={logo} alt='Quadrant logo' width={120} />
-            <div className="w-[90%] self-center">
+            <div className="w-[75%] self-center">
                 {props.children}
             </div>
         </div>

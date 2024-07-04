@@ -71,3 +71,14 @@ button {
 .success:hover {
   background-color: rgb(var(--success-surface-color));
 }
+
+.chip {
+  box-shadow: 0px 0px 0.1rem rgba(var(--foreground-color), 0.5);
+  transition: all 0.5s ease;
+}
+
+.chip:hover {
+  @apply cursor-pointer;
+  box-shadow: 0px 0px 0.5rem rgba(var(--foreground-color), 0.5);
+  transition: all 0.5s ease;
+}
