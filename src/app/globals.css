@@ -3,31 +3,70 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-color: 255, 255, 255;
+  --foreground-color: 0, 0, 0;
+  --primary-color: 0, 0, 0;
+  --text-on-primary: 255, 255, 255;
+  --secondary-color: 255, 255, 255;
+  --text-on-secondary: 0, 0, 0;
+  --error-color:  255, 0, 0;
+  --success-surface-color: 59, 130, 246;
+  --text-on-success-surface: 255, 255, 255
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.modalBg {
+  background-color: rgba(var(--foreground-color), 0.5);
 }
+
+
+.modal {
+  @apply w-[500px];
+  @apply rounded-lg;
+  @apply text-lg;
+  color: rgba(var(--text-on-secondary));
+  background-color: rgba(var(--secondary-color));
+  box-shadow: 0px 0px 2rem rgba(var(--foreground-color), 0.5);
+}
+
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: 0, 0, 0;
+    --foreground-color: 255, 255, 255;
+  }
+} */
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-color));
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.primarySurfaceColor {
+  background-color: rgb(var(--primary-color));
+}
+
+.header {
+  @apply primarySurfaceColor
+}
+
+.inputField,
+textArea {
+    font-size: 12px;
+    color: rgba(var(--foreground-color));
+    border: 0.1px solid black;
+}
+
+button {
+  @apply px-2 py-1;
+}
+
+.success {
+  @apply rounded-sm;
+  background-color: rgb(var(--success-surface-color), 0.8);
+  color: rgb(var(--text-on-success-surface));
+  transition: all 0.2s ease-in-out;
+}
+
+.success:hover {
+  background-color: rgb(var(--success-surface-color));
 }
