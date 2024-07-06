@@ -1,8 +1,9 @@
 interface ChipProps {
-    id: number,
     title: string,
     bgColor?: string,
-    textColor?: string
+    textColor?: string,
+    onClick: () => void,
+    animation: string
 }
 
 export default (
@@ -10,7 +11,7 @@ export default (
 ) => {
 
     return (
-        <div className={`chip rounded-2xl py-1 px-2 ${props.textColor}`}
+        <div className={`chip rounded-2xl py-1 px-2 ${props.textColor} animate__animated ${props.animation}`} onClick={props.onClick}
             style={{
                 backgroundColor: props.bgColor
             }}>

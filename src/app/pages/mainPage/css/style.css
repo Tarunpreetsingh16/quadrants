@@ -24,10 +24,29 @@
 
 .closeTask {
     transition: all 0.2s ease-in-out;
+    @apply text-red-600;
 }
 
 .closeTask:hover {
     @apply scale-[1.2] rotate-90;
+}
+
+.editTask {
+    transition: all 0.2s ease-in-out;
+    @apply text-sky-600;
+}
+
+.editTask:hover {
+    @apply scale-[1.2];
+}
+
+.deleteTask {
+    transition: all 0.2s ease-in-out;
+    @apply text-red-500;
+}
+
+.deleteTask:hover {
+    @apply scale-[1.2];
 }
 
 .topQuadrants,

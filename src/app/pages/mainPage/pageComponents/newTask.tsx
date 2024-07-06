@@ -24,18 +24,18 @@ export default function(
     const [yLabelPriority, setYLabelPriority] = useState("high");
 
     const createTask = () => {
-        const task = new Task(0, title, description, new Date(dayjs(date).toString()), xLabelPriority, yLabelPriority);
+        const task = new Task(title, description, new Date(dayjs(date).toString()), xLabelPriority, yLabelPriority);
         props.onCreateNewTask(task)
     }
 
     return (
         <div className="modalBg absolute w-screen h-screen">
             <div className="w-screen h-screen flex justify-center">
-                <div className="modal bg-black self-center flex flex-col  animate__animated animate__flipInX">
+                <div className="modal bg-black self-center flex flex-col  animate__animated animate__zoomIn">
                     <div className="self-center w-[80%]">
                         <div className="my-3 flex w-[100%] flex-row justify-between" >
                             <label className="text-2xl">New Task</label>
-                            <div className="self-center cursor-pointer text-red-600" 
+                            <div className="self-center cursor-pointer" 
                                 onClick={props.onClose}>
                                 <HighlightOffIcon className="closeTask"/>
                             </div>
@@ -51,7 +51,7 @@ export default function(
                         
                         <div className="my-3 flex flex-col">
                             <label>Description</label>
-                            <textarea className="rounded-sm font-medium px-1 font-medium resize-none h-[100px]" 
+                            <textarea className="rounded-sm font-medium px-1 font-medium resize-none leading-[2] h-[100px]" 
                                 placeholder="Tickets needs to created by Monday for etransfer initiative..." 
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}/>
@@ -73,14 +73,14 @@ export default function(
 
                         <div className="my-3 flex flex-col justify-start content-start my-5">
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DateTimePicker label="Task deadline picker" 
+                                <DateTimePicker label="Deadline" 
                                     value={date} 
                                     onChange={(e) => setDate(dayjs(e?.toDate()))}/>
                             </LocalizationProvider>
                         </div>
 
                         <div className="my-3">
-                            <button className="ml-1 success" onClick={createTask}>Create Task</button>
+                            <button className="ml-1 success" onClick={createTask}>Create</button>
                         </div>
                     </div>
                 </div>
@@ -106,6 +106,7 @@ const ScaleRadioGroup = (
             name="row-radio-buttons-group"
             onChange={(e) => props.onChangePriority(e.target.value)}
             value={props.priority}
+            className="radioGroup"
         >
             <FormControlLabel value="high" control={
                 <Radio />
