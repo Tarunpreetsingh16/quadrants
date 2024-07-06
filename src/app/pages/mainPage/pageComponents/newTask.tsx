@@ -6,6 +6,8 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { useState } from "react";
 import dayjs from "dayjs";
 import { Task } from "@/app/data/task";
+import { Err } from "@/app/data/error";
+import InputError from "@/app/ui/inputError";
 
 interface NewTaskProps {
     onClose: () => void,
@@ -22,8 +24,17 @@ export default function(
     const [date, setDate] = useState(dayjs(new Date()))
     const [xLabelPriority, setXLabelPriority] = useState("high");
     const [yLabelPriority, setYLabelPriority] = useState("high");
+    const [titleError, setTitleError] = useState(new Err(false, ''))
 
     const createTask = () => {
+        let hasError = false
+        if (!title || title.trim().length === 0 ||  title.trim().length >= 13) {
+            setTitleError(new Err(true, 'Please enter a valid title'))
+            hasError = true
+        } else {
+            setTitleError(new Err(false, ''))
+        }
+        if (hasError) return;
         const task = new Task(title, description, new Date(dayjs(date).toString()), xLabelPriority, yLabelPriority);
         props.onCreateNewTask(task)
     }
@@ -48,6 +59,11 @@ export default function(
                                 value={title} 
                                 onChange={setTitle} />
                         </div>
+                        {
+                                titleError.hasError 
+                                    ? <InputError  text={titleError.msg} />
+                                    : null
+                        }
                         
                         <div className="my-3 flex flex-col">
                             <label>Description</label>

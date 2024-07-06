@@ -10,6 +10,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import Alert from "@/app/ui/alert";
 import { DeleteTaskAlertContent, DiscardChangeAlertContent } from "./alerts";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Err } from "@/app/data/error";
+import InputError from "@/app/ui/inputError";
 
 interface EditTaskProps {
     onClose: () => void,
@@ -28,8 +30,17 @@ export default function(
     const [showAlert, setShowAlert] = useState(false);
     const [alertBody, setAlertBody] = useState(<></>);
     const [alertTitle, setAlertTitle] = useState("Discard changes?");
+    const [titleError, setTitleError] = useState(new Err(false, ''))
 
     const updateTask = () => {
+        let hasError = false
+        if (!updatedTask.title || updatedTask.title.trim().length === 0) {
+            setTitleError(new Err(true, 'Please enter a valid title'))
+            hasError = true
+        } else {
+            setTitleError(new Err(false, ''))
+        }
+        if (hasError) return;
         props.onUpdateTask(updatedTask)
     }
 
@@ -119,7 +130,12 @@ export default function(
                                     }} 
                                     readOnly={readOnly} />
                             </div>
-                            
+                            {
+                                    titleError.hasError 
+                                        ? <InputError  text={titleError.msg} />
+                                        : null
+                            }
+                                
                             <div className="my-3 flex flex-col">
                                 <label>Description</label>
                                 <textarea className={`rounded-sm font-medium leading-[2] px-1 resize-none 
