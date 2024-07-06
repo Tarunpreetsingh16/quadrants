@@ -30,6 +30,14 @@
     @apply scale-[1.2] rotate-90;
 }
 
+.editTask {
+    transition: all 0.2s ease-in-out;
+}
+
+.editTask:hover {
+    @apply scale-[1.2];
+}
+
 .topQuadrants,
 .bottomQuadrants {
     @apply w-screen flex flex-row;

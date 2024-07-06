@@ -11,7 +11,12 @@
   --text-on-secondary: 0, 0, 0;
   --error-color: 239, 35, 60;
   --success-surface-color: 59, 130, 246;
-  --text-on-success-surface: 255, 255, 255
+  --text-on-success-surface: 255, 255, 255;
+  --input-text-color: 0, 0, 0
+}
+
+.inputTextColor {
+  color: rgba(var(--input-text-color), 0.7)
 }
 
 .modalBg {
@@ -36,11 +41,6 @@
   }
 } */
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-color));
-}
-
 .primarySurfaceColor {
   background-color: rgb(var(--primary-color));
 }
@@ -52,7 +52,7 @@ body {
 .inputField,
 textArea {
     font-size: 12px;
-    color: rgba(var(--foreground-color));
+    @apply inputTextColor;
     border: 0.1px solid black;
 }
 
@@ -86,4 +86,9 @@ button {
 .error {
   @apply mt-2 text-xs text-white p-[1%] rounded-sm;
   background-color: rgba(var(--error-color), 0.9);
+}
+
+
+.radioGroup label {
+  @apply inputTextColor;
 }
