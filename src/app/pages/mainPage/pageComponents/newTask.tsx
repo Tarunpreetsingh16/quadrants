@@ -35,7 +35,7 @@ export default function(
                     <div className="self-center w-[80%]">
                         <div className="my-3 flex w-[100%] flex-row justify-between" >
                             <label className="text-2xl">New Task</label>
-                            <div className="self-center cursor-pointer text-red-600" 
+                            <div className="self-center cursor-pointer" 
                                 onClick={props.onClose}>
                                 <HighlightOffIcon className="closeTask"/>
                             </div>

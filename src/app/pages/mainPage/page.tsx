@@ -14,19 +14,19 @@ import { TaskToBeEdited } from "@/app/data/taskToBeEdited";
 
 export default function MainPage() {
     
-    const [quad1Tasks, pushToQuad1Tasks] = useState(Array<Task>(
-        (new Task("Task1", "Description", new Date(), "high", "high")),
+    const [quad1Tasks, updateQuad1Tasks] = useState(Array<Task>(
+        // (new Task("Task1", "Description", new Date(), "high", "high")),
     ));
-    const [quad2Tasks, pushToQuad2Tasks] = useState(Array<Task>(
+    const [quad2Tasks, updateQuad2Tasks] = useState(Array<Task>(
     ));
-    const [quad3Tasks, pushToQuad3Tasks] = useState(Array<Task>);
-    const [quad4Tasks, pushToQuad4Tasks] = useState(Array<Task>);
+    const [quad3Tasks, updateQuad3Tasks] = useState(Array<Task>);
+    const [quad4Tasks, updateQuad4Tasks] = useState(Array<Task>);
     const [createNewTask, setCreateNewTask] = useState(false);
     const [editAxes, setEditAxes] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const [xAxisLabel, setXAxisLabel] = useState("X-Axis");
     const [yAxisLabel, setYAxisLabel] = useState("Y-Axis");
-    const [taskToBeEdited, setTaskToBeEdited] = useState(new TaskToBeEdited(new Task('', '', new Date(), '', ''), -1))
+    const [taskToBeEdited, setTaskToBeEdited] = useState(new TaskToBeEdited(new Task('', '', new Date(), '', ''), -1, -1))
     const [editTask, setEditTask] = useState(false)
 
     const editModalStates = (type: string, state: boolean) => {
@@ -57,16 +57,16 @@ export default function MainPage() {
 
     const onCreateNewTask = (task : Task) => {
         if (task.xAxisPriority === "high" && task.yAxisPriority === "high") {
-            pushToQuad1Tasks([...quad1Tasks, task])
+            updateQuad1Tasks([...quad1Tasks, task])
         }
         else if (task.xAxisPriority === "low" && task.yAxisPriority === "low") {
-            pushToQuad4Tasks([...quad4Tasks, task])
+            updateQuad4Tasks([...quad4Tasks, task])
         }
         else if (task.xAxisPriority === "low") {
-            pushToQuad2Tasks([...quad2Tasks, task])
+            updateQuad2Tasks([...quad2Tasks, task])
         }
         else {
-            pushToQuad3Tasks([...quad3Tasks, task])
+            updateQuad3Tasks([...quad3Tasks, task])
         }
         setCreateNewTask(false)
     }
@@ -75,24 +75,57 @@ export default function MainPage() {
         const [index, quad] = arr;
         switch (quad) {
             case 0: 
-                setTaskToBeEdited(new TaskToBeEdited(quad1Tasks[index], index))
+                setTaskToBeEdited(new TaskToBeEdited(quad1Tasks[index], index, quad))
                 break;
             case 1: 
-                setTaskToBeEdited(new TaskToBeEdited(quad2Tasks[index], index))
+                setTaskToBeEdited(new TaskToBeEdited(quad2Tasks[index], index, quad))
                 break;
             case 2: 
-                setTaskToBeEdited(new TaskToBeEdited(quad3Tasks[index], index))
+                setTaskToBeEdited(new TaskToBeEdited(quad3Tasks[index], index, quad))
                 break;
             case 3: 
-                setTaskToBeEdited(new TaskToBeEdited(quad4Tasks[index], index))
+                setTaskToBeEdited(new TaskToBeEdited(quad4Tasks[index], index, quad))
                 break;
             default: 
-                setTaskToBeEdited(new TaskToBeEdited(new Task('', '', new Date(), '', ''), -1))
+                setTaskToBeEdited(new TaskToBeEdited(new Task('', '', new Date(), '', ''), -1, -1))
                 console.error("Invalid quadrant!")
                 return
         }
 
         editModalStates('editTask', true)
+    }
+
+    const deleteTask = () => {
+        const quad = taskToBeEdited.quad
+        switch(quad) {
+            case 0:
+                updateQuad1Tasks([
+                    ...quad1Tasks.slice(0, taskToBeEdited.index),
+                    ...quad1Tasks.slice(taskToBeEdited.index + 1)
+                ])
+                break
+            case 1:
+                updateQuad2Tasks([
+                    ...quad2Tasks.slice(0, taskToBeEdited.index),
+                    ...quad2Tasks.slice(taskToBeEdited.index + 1)
+                ])
+                break
+            case 2:
+                updateQuad3Tasks([
+                    ...quad3Tasks.slice(0, taskToBeEdited.index),
+                    ...quad3Tasks.slice(taskToBeEdited.index + 1)
+                ])
+                break
+            case 3:
+                updateQuad4Tasks([
+                    ...quad4Tasks.slice(0, taskToBeEdited.index),
+                    ...quad4Tasks.slice(taskToBeEdited.index + 1)
+                ])
+                break
+            default:
+                console.error("Invalid quad!")            
+        }
+        editModalStates('editTask', false)
     }
 
     useEffect(() => {
@@ -157,9 +190,16 @@ export default function MainPage() {
                             onClose={() => {
                                 editModalStates('editTask', false)
                             }} 
-                            updateTask={() => {
+                            onUpdateTask={(updatedTask: Task) => {
+                                updateQuad1Tasks([
+                                    ...quad1Tasks.slice(0, taskToBeEdited.index),
+                                    updatedTask,
+                                    ...quad1Tasks.slice(taskToBeEdited.index + 1)
+                                ])
                                 editModalStates('editTask', false)
-                            }}/>
+                            }}
+                            onDeleteTask={deleteTask}
+                            />
                         : null
                 }
             </div>
