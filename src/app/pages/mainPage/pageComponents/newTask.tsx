@@ -28,7 +28,7 @@ export default function(
 
     const createTask = () => {
         let hasError = false
-        if (!title || title.trim().length === 0 ||  title.trim().length >= 13) {
+        if (!title || title.trim().length === 0) {
             setTitleError(new Err(true, 'Please enter a valid title'))
             hasError = true
         } else {
