@@ -74,16 +74,16 @@ export default function MainPage() {
     const onTaskClick = (arr: Array<number>) => {
         const [index, quad] = arr;
         switch (quad) {
-            case 0: 
+            case 1: 
                 setTaskToBeEdited(new TaskToBeEdited(quad1Tasks[index], index, quad))
                 break;
-            case 1: 
+            case 2: 
                 setTaskToBeEdited(new TaskToBeEdited(quad2Tasks[index], index, quad))
                 break;
-            case 2: 
+            case 3: 
                 setTaskToBeEdited(new TaskToBeEdited(quad3Tasks[index], index, quad))
                 break;
-            case 3: 
+            case 4: 
                 setTaskToBeEdited(new TaskToBeEdited(quad4Tasks[index], index, quad))
                 break;
             default: 
@@ -98,25 +98,25 @@ export default function MainPage() {
     const deleteTask = () => {
         const quad = taskToBeEdited.quad
         switch(quad) {
-            case 0:
+            case 1:
                 updateQuad1Tasks([
                     ...quad1Tasks.slice(0, taskToBeEdited.index),
                     ...quad1Tasks.slice(taskToBeEdited.index + 1)
                 ])
                 break
-            case 1:
+            case 2:
                 updateQuad2Tasks([
                     ...quad2Tasks.slice(0, taskToBeEdited.index),
                     ...quad2Tasks.slice(taskToBeEdited.index + 1)
                 ])
                 break
-            case 2:
+            case 3:
                 updateQuad3Tasks([
                     ...quad3Tasks.slice(0, taskToBeEdited.index),
                     ...quad3Tasks.slice(taskToBeEdited.index + 1)
                 ])
                 break
-            case 3:
+            case 4:
                 updateQuad4Tasks([
                     ...quad4Tasks.slice(0, taskToBeEdited.index),
                     ...quad4Tasks.slice(taskToBeEdited.index + 1)
@@ -124,6 +124,63 @@ export default function MainPage() {
                 break
             default:
                 console.error("Invalid quad!")            
+        }
+
+        editModalStates('editTask', false)
+    }
+
+    const updateTask = (updatedTask: Task) => {
+        if (updatedTask.xAxisPriority === "high" && updatedTask.yAxisPriority === "high") {
+            if (taskToBeEdited.quad === 1) {
+                updateQuad1Tasks([
+                    ...quad1Tasks.slice(0, taskToBeEdited.index),
+                    updatedTask,
+                    ...quad1Tasks.slice(taskToBeEdited.index + 1)
+                ])
+            }
+            else {
+                deleteTask()
+                updateQuad1Tasks([...quad1Tasks, updatedTask])
+            }
+        }
+        else if (updatedTask.xAxisPriority === "low" && updatedTask.yAxisPriority === "low") {
+            if (taskToBeEdited.quad === 4) {
+                updateQuad4Tasks([
+                    ...quad4Tasks.slice(0, taskToBeEdited.index),
+                    updatedTask,
+                    ...quad4Tasks.slice(taskToBeEdited.index + 1)
+                ])
+            }
+            else {
+                deleteTask()
+                updateQuad4Tasks([...quad4Tasks, updatedTask])
+            }
+        }
+        else if (updatedTask.xAxisPriority === "low") {
+            if (taskToBeEdited.quad === 2) {
+                updateQuad2Tasks([
+                    ...quad2Tasks.slice(0, taskToBeEdited.index),
+                    updatedTask,
+                    ...quad2Tasks.slice(taskToBeEdited.index + 1)
+                ])
+            }
+            else {
+                deleteTask()
+                updateQuad2Tasks([...quad2Tasks, updatedTask])
+            }
+        }
+        else {
+            if (taskToBeEdited.quad === 3) {
+                updateQuad3Tasks([
+                    ...quad3Tasks.slice(0, taskToBeEdited.index),
+                    updatedTask,
+                    ...quad3Tasks.slice(taskToBeEdited.index + 1)
+                ])
+            }
+            else {
+                deleteTask()
+                updateQuad3Tasks([...quad3Tasks, updatedTask])
+            }
         }
         editModalStates('editTask', false)
     }
@@ -190,14 +247,7 @@ export default function MainPage() {
                             onClose={() => {
                                 editModalStates('editTask', false)
                             }} 
-                            onUpdateTask={(updatedTask: Task) => {
-                                updateQuad1Tasks([
-                                    ...quad1Tasks.slice(0, taskToBeEdited.index),
-                                    updatedTask,
-                                    ...quad1Tasks.slice(taskToBeEdited.index + 1)
-                                ])
-                                editModalStates('editTask', false)
-                            }}
+                            onUpdateTask={(updatedTask: Task) => updateTask(updatedTask)}
                             onDeleteTask={deleteTask}
                             />
                         : null
