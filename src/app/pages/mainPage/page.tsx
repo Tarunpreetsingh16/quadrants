@@ -24,8 +24,8 @@ export default function MainPage() {
     const [createNewTask, setCreateNewTask] = useState(false);
     const [editAxes, setEditAxes] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
-    const [xAxisLabel, setXAxisLabel] = useState("X-Axis");
-    const [yAxisLabel, setYAxisLabel] = useState("Y-Axis");
+    const [xAxisLabel, setXAxisLabel] = useState("");
+    const [yAxisLabel, setYAxisLabel] = useState("");
     const [taskToBeEdited, setTaskToBeEdited] = useState(new TaskToBeEdited(new Task('', '', new Date(), '', ''), -1, -1))
     const [editTask, setEditTask] = useState(false)
 
