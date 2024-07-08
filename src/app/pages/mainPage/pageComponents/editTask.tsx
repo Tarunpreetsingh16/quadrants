@@ -45,6 +45,7 @@ export default function(
     }
 
     const discardTaskChange = () => {
+        setAlertTitle("Discard changes?");
         setAlertBody(
             <DiscardChangeAlertContent 
                 onClickYes={() => {
@@ -179,7 +180,7 @@ export default function(
                                                     task.yAxisPriority = val
                                                     setUpdatedTask(task)
                                                 }}/>
-                                        : <h6 className="capitalize text-xs font-medium inputTextColor">{updatedTask.xAxisPriority}</h6>
+                                        : <h6 className="capitalize text-xs font-medium inputTextColor">{updatedTask.yAxisPriority}</h6>
                                 }
                             </div>
 
