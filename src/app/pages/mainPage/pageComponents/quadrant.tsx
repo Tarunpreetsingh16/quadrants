@@ -35,7 +35,8 @@ export default function(
                                                 key={index}
                                                 textColor="text-white"
                                                 onClick={() => props.onTaskClick([index, 1])}
-                                                animation="animate__flipInX"/>
+                                                animation="animate__flipInX"
+                                                id={`${index}#1`}/>
                                         }
                                     })
                             }
@@ -54,7 +55,8 @@ export default function(
                                                 key={index}
                                                 textColor="text-white"
                                                 onClick={() => props.onTaskClick([index, 2])}
-                                                animation="animate__flipInX"/>
+                                                animation="animate__flipInX"
+                                                id={`${index}#1`}/>
                                         }
                                     })
                             }
@@ -75,7 +77,8 @@ export default function(
                                                 key={index}
                                                 textColor="text-white"
                                                 onClick={() => props.onTaskClick([index, 3])}
-                                                animation="animate__flipInX"/>
+                                                animation="animate__flipInX"
+                                                id={`${index}#1`}/>
                                         }
                                     })
                             }
@@ -94,7 +97,8 @@ export default function(
                                                 key={index}
                                                 textColor="text-white"
                                                 onClick={() => props.onTaskClick([index, 4])}
-                                                animation="animate__flipInX"/>
+                                                animation="animate__flipInX"
+                                                id={`${index}#1`}/>
                                         }
                                     })
                             }
