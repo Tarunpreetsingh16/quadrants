@@ -35,7 +35,7 @@ export default function(
             setTitleError(new Err(false, ''))
         }
         if (hasError) return;
-        const task = new Task(title, description, new Date(dayjs(date).toString()), xLabelPriority, yLabelPriority);
+        const task = new Task(-1, title, description, new Date(dayjs(date).toString()), xLabelPriority, yLabelPriority);
         props.onCreateNewTask(task)
     }
 
