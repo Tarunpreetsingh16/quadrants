@@ -27,14 +27,17 @@ export default function(
                     <div className="h-[92%]  overflow-auto">
                         <div className="p-5 flex flex-row flex-wrap">
                             {
-                                quad1Tasks.map((task: Task, index: number) =>
-                                    <Chip title={task.title} 
-                                        bgColor={`rgba(127,29,29, 0.${colorShade})`} 
-                                        key={index}
-                                        textColor="text-white"
-                                        onClick={() => props.onTaskClick([index, 1])}
-                                        animation="animate__flipInX"/>
-                                )
+                                quad1Tasks
+                                    .map((task: Task, index: number) => {
+                                        if (!task.deleted) {
+                                            return <Chip title={task.title} 
+                                                bgColor={`rgba(127,29,29, 0.${colorShade})`} 
+                                                key={index}
+                                                textColor="text-white"
+                                                onClick={() => props.onTaskClick([index, 1])}
+                                                animation="animate__flipInX"/>
+                                        }
+                                    })
                             }
                         </div>
                     </div>
@@ -43,14 +46,17 @@ export default function(
                     <div className=" h-[98%]  overflow-auto">
                         <div className="p-5 flex flex-row flex-wrap">
                             {
-                                quad2Tasks.map((task: Task, index: number) =>
-                                    <Chip title={task.title}
-                                        bgColor={`rgba(239,68,68, 0.${colorShade})`} 
-                                        key={index}
-                                        textColor="text-white"
-                                        onClick={() => props.onTaskClick([index, 2])}
-                                        animation="animate__flipInX"/>
-                                )
+                                quad2Tasks
+                                    .map((task: Task, index: number) => {
+                                        if (!task.deleted) {
+                                            return <Chip title={task.title} 
+                                                bgColor={`rgba(239,68,68, 0.${colorShade})`} 
+                                                key={index}
+                                                textColor="text-white"
+                                                onClick={() => props.onTaskClick([index, 2])}
+                                                animation="animate__flipInX"/>
+                                        }
+                                    })
                             }
                         </div>
                     </div>
@@ -61,14 +67,17 @@ export default function(
                     <div className=" h-[98%]  overflow-auto">
                         <div className="p-5 flex flex-row flex-wrap">
                             {
-                                quad3Tasks.map((task: Task, index: number) =>
-                                    <Chip title={task.title}
-                                        bgColor={`rgba(245,158,11, 0.${colorShade})`} 
-                                        key={index}
-                                        textColor="text-white"
-                                        onClick={() => props.onTaskClick([index, 3])}
-                                        animation="animate__flipInX"/>
-                                )
+                                quad3Tasks
+                                    .map((task: Task, index: number) => {
+                                        if (!task.deleted) {
+                                            return <Chip title={task.title} 
+                                                bgColor={`rgba(245,158,11, 0.${colorShade})`} 
+                                                key={index}
+                                                textColor="text-white"
+                                                onClick={() => props.onTaskClick([index, 3])}
+                                                animation="animate__flipInX"/>
+                                        }
+                                    })
                             }
                         </div>
                     </div>
@@ -77,14 +86,17 @@ export default function(
                     <div className=" h-[98%]  overflow-auto">
                         <div className="p-5 flex flex-row flex-wrap">
                             {
-                                quad4Tasks.map((task: Task, index: number) =>
-                                    <Chip title={task.title}
-                                        bgColor={`rgba(101,163,13, 0.${colorShade})`} 
-                                        key={index}
-                                        textColor="text-white"
-                                        onClick={() => props.onTaskClick([index, 4])}
-                                        animation="animate__flipInX"/>
-                                )
+                                quad4Tasks
+                                    .map((task: Task, index: number) => {
+                                        if (!task.deleted) {
+                                            return <Chip title={task.title} 
+                                                bgColor={`rgba(101,163,13, 0.${colorShade})`} 
+                                                key={index}
+                                                textColor="text-white"
+                                                onClick={() => props.onTaskClick([index, 4])}
+                                                animation="animate__flipInX"/>
+                                        }
+                                    })
                             }
                         </div>
                     </div>

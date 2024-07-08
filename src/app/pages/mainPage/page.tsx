@@ -15,7 +15,7 @@ import { TaskToBeEdited } from "@/app/data/taskToBeEdited";
 export default function MainPage() {
     
     const [quad1Tasks, updateQuad1Tasks] = useState(Array<Task>(
-        // (new Task("Task1", "Description", new Date(), "high", "high")),
+        (new Task(0, "Task1", "Description", new Date(), "high", "high")),
     ));
     const [quad2Tasks, updateQuad2Tasks] = useState(Array<Task>(
     ));
@@ -24,10 +24,13 @@ export default function MainPage() {
     const [createNewTask, setCreateNewTask] = useState(false);
     const [editAxes, setEditAxes] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
-    const [xAxisLabel, setXAxisLabel] = useState("");
-    const [yAxisLabel, setYAxisLabel] = useState("");
-    const [taskToBeEdited, setTaskToBeEdited] = useState(new TaskToBeEdited(new Task('', '', new Date(), '', ''), -1, -1))
+    const [xAxisLabel, setXAxisLabel] = useState("X-Axis");
+    const [yAxisLabel, setYAxisLabel] = useState("Y-Axis");
+    const [taskToBeEdited, setTaskToBeEdited] = useState(new TaskToBeEdited(new Task(-1, '', '', new Date(), '', ''), -1, -1))
     const [editTask, setEditTask] = useState(false)
+    const [nextId, setNextId] = useState(1)
+
+    console.log({quad1Tasks, quad2Tasks, quad3Tasks, quad4Tasks})
 
     const editModalStates = (type: string, state: boolean) => {
         setCreateNewTask(false)
@@ -57,17 +60,22 @@ export default function MainPage() {
 
     const onCreateNewTask = (task : Task) => {
         if (task.xAxisPriority === "high" && task.yAxisPriority === "high") {
+            task.id = nextId;
             updateQuad1Tasks([...quad1Tasks, task])
         }
         else if (task.xAxisPriority === "low" && task.yAxisPriority === "low") {
+            task.id = nextId;
             updateQuad4Tasks([...quad4Tasks, task])
         }
         else if (task.xAxisPriority === "low") {
+            task.id = nextId;
             updateQuad2Tasks([...quad2Tasks, task])
         }
         else {
+            task.id = nextId;
             updateQuad3Tasks([...quad3Tasks, task])
         }
+        setNextId(nextId + 1)
         setCreateNewTask(false)
     }
 
@@ -87,7 +95,7 @@ export default function MainPage() {
                 setTaskToBeEdited(new TaskToBeEdited(quad4Tasks[index], index, quad))
                 break;
             default: 
-                setTaskToBeEdited(new TaskToBeEdited(new Task('', '', new Date(), '', ''), -1, -1))
+                setTaskToBeEdited(new TaskToBeEdited(new Task(-1, '', '', new Date(), '', ''), -1, -1))
                 console.error("Invalid quadrant!")
                 return
         }
@@ -95,7 +103,7 @@ export default function MainPage() {
         editModalStates('editTask', true)
     }
 
-    const deleteTask = () => {
+    const removeTask = () => {
         const quad = taskToBeEdited.quad
         switch(quad) {
             case 1:
@@ -125,11 +133,17 @@ export default function MainPage() {
             default:
                 console.error("Invalid quad!")            
         }
+    }
 
+    const deleteTask = () => {
+        const taskToBeDeleted = taskToBeEdited.task.getCopy()
+        taskToBeDeleted.deleted = true
+        updateTask(taskToBeDeleted)
         editModalStates('editTask', false)
     }
 
     const updateTask = (updatedTask: Task) => {
+        console.log({updatedTask})
         if (updatedTask.xAxisPriority === "high" && updatedTask.yAxisPriority === "high") {
             if (taskToBeEdited.quad === 1) {
                 updateQuad1Tasks([
@@ -139,7 +153,7 @@ export default function MainPage() {
                 ])
             }
             else {
-                deleteTask()
+                removeTask()
                 updateQuad1Tasks([...quad1Tasks, updatedTask])
             }
         }
@@ -152,7 +166,7 @@ export default function MainPage() {
                 ])
             }
             else {
-                deleteTask()
+                removeTask()
                 updateQuad4Tasks([...quad4Tasks, updatedTask])
             }
         }
@@ -165,7 +179,7 @@ export default function MainPage() {
                 ])
             }
             else {
-                deleteTask()
+                removeTask()
                 updateQuad2Tasks([...quad2Tasks, updatedTask])
             }
         }
@@ -178,7 +192,7 @@ export default function MainPage() {
                 ])
             }
             else {
-                deleteTask()
+                removeTask()
                 updateQuad3Tasks([...quad3Tasks, updatedTask])
             }
         }
@@ -196,7 +210,7 @@ export default function MainPage() {
         <>
             <Header>
                 <FeatureList onCreateNewTask={() => editModalStates('createNewTask', true)} 
-                    onEditAxes={() =>  editModalStates('editAxes', true)}
+                    onEditAxes={() => editModalStates('editAxes', true)}
                     containerCss="flex-row justify-end buttonSpacingHorizontal" />
             </Header>
             <div className="quadrantSheet flex h-screen">
