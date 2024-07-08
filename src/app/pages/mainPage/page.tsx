@@ -15,7 +15,7 @@ import { TaskToBeEdited } from "@/app/data/taskToBeEdited";
 export default function MainPage() {
     
     const [quad1Tasks, updateQuad1Tasks] = useState(Array<Task>(
-        (new Task(0, "Task1", "Description", new Date(), "high", "high")),
+        // (new Task(0, "Task1", "Description", new Date(), "high", "high")),
     ));
     const [quad2Tasks, updateQuad2Tasks] = useState(Array<Task>(
     ));
@@ -24,8 +24,8 @@ export default function MainPage() {
     const [createNewTask, setCreateNewTask] = useState(false);
     const [editAxes, setEditAxes] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
-    const [xAxisLabel, setXAxisLabel] = useState("X-Axis");
-    const [yAxisLabel, setYAxisLabel] = useState("Y-Axis");
+    const [xAxisLabel, setXAxisLabel] = useState("");
+    const [yAxisLabel, setYAxisLabel] = useState("");
     const [taskToBeEdited, setTaskToBeEdited] = useState(new TaskToBeEdited(new Task(-1, '', '', new Date(), '', ''), -1, -1))
     const [editTask, setEditTask] = useState(false)
     const [nextId, setNextId] = useState(1)
@@ -143,7 +143,6 @@ export default function MainPage() {
     }
 
     const updateTask = (updatedTask: Task) => {
-        console.log({updatedTask})
         if (updatedTask.xAxisPriority === "high" && updatedTask.yAxisPriority === "high") {
             if (taskToBeEdited.quad === 1) {
                 updateQuad1Tasks([
@@ -204,7 +203,7 @@ export default function MainPage() {
             setCreateNewTask(false)
             setShowAlert(true)
         }
-    }, [createNewTask])
+    }, [createNewTask, xAxisLabel, yAxisLabel])
 
     return (
         <>
@@ -219,7 +218,9 @@ export default function MainPage() {
                     quad2Tasks={quad2Tasks} 
                     quad3Tasks={quad3Tasks} 
                     quad4Tasks={quad4Tasks}
-                    onTaskClick={onTaskClick} />
+                    onTaskClick={onTaskClick}
+                    onDragStart={setTaskToBeEdited}
+                    onDrop={updateTask}/>
                 {
                     editAxes
                         ? <AxisNaming onClose={() => editModalStates('editTask', false)}
